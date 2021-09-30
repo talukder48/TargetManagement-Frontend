@@ -11,7 +11,8 @@ class TargetList extends Component {
         this.editTarget=this.editTarget.bind(this)
     }
     editTarget(target_code) {
-        this.props.history.push({pathname:'/Mod-Target/', state: {detail:target_code }});
+        this.props.history.push(`/Mod-Target/${target_code}`);
+        console.log(target_code);
     }
     componentDidMount(){
         TargetService.getTarget().then((res) => {
@@ -20,7 +21,7 @@ class TargetList extends Component {
         })
     }
     addTargte(){
-        this.props.history.push('/Add-Target')
+        this.props.history.push('/Add-Target');
     }
 
     render() {
