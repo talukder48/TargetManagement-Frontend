@@ -9,10 +9,17 @@ class TargetList extends Component {
         }
         this.addTargte=this.addTargte.bind(this);
         this.editTarget=this.editTarget.bind(this)
+        this.DeleteTarget=this.DeleteTarget.bind(this)
     }
     editTarget(target_code) {
-        this.props.history.push(`/Mod-Target/${target_code}`);
+        this.props.history.push(`/Add-Target/${target_code}`);
         console.log(target_code);
+    }
+    DeleteTarget(target_code) {
+        TargetService.DeleteByTargetCode(target_code).then((res)=>{
+            console.log(target_code);
+            this.setState({targets:this.state.targets.filter(target=>target.target_code !== target_code)});
+        })
     }
     componentDidMount(){
         TargetService.getTarget().then((res) => {
@@ -21,7 +28,7 @@ class TargetList extends Component {
         })
     }
     addTargte(){
-        this.props.history.push('/Add-Target');
+        this.props.history.push('/Add-Target/-1');
     }
 
     render() {
@@ -59,7 +66,8 @@ class TargetList extends Component {
                                     <td>{target.active_flag}</td>
                                     <td>{target.target_remarks}</td>
                                     <td>{target.parent_code}</td>
-                                    <td> <button className="btn btn-info" onClick={()=>this.editTarget(target.target_code)}>Edit</button></td>
+                                    <td> <button className="btn btn-info" onClick={()=>this.editTarget(target.target_code)}>Update</button>
+                                    <button className="btn btn-danger" style={{marginLeft:"10px"}}  variant="danger" onClick={()=> {if (window.confirm('Are you sure you wish to delete this item?'))this.DeleteTarget(target.target_code)}}>Remove</button></td>
                                     </tr>
                                 )
                             }

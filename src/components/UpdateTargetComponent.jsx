@@ -32,7 +32,7 @@ class UpdateTargetComponent extends Component {
                      target_remarks:this.state.target_remarks,
                      parent_code:this.state.parent_code};
         console.log(JSON.stringify(Targets));
-        TargetService.createTarget(Targets).then(res=>{
+        TargetService.updateTarget(Targets,this.state.target_code).then(res=>{
             this.props.history.push('/')
         });
 

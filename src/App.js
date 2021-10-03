@@ -12,8 +12,9 @@ function App() {
                     <Switch>
                          <Route path="/" exact component={TargetList}></Route> 
                          <Route path="/Target" component={TargetList}></Route>      
-                         <Route path="/Add-Target" component={addTargetComponent}></Route>  
-                         <Route path="/Mod-Target/:target_code" component={UpdateTargetComponent}></Route>                                                   
+                         <Route path="/Add-Target/:target_code" component={addTargetComponent}></Route>  
+                         {/* <Route path="/Mod-Target/:target_code" component={UpdateTargetComponent}></Route> */}
+                                                                           
                     </Switch>                      
             </div>
         </Router>

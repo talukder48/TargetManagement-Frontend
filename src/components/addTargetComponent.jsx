@@ -5,7 +5,8 @@ class addTargetComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            target_code		   : '',
+            //step 2
+            target_code		   : this.props.match.params.target_code,
             start_date         : '',
             end_date           : '',
             target_description : '',
@@ -22,6 +23,28 @@ class addTargetComponent extends Component {
         this.TargetNameHandler=this.TargetNameHandler.bind(this);
         this.SaveTargetData=this.SaveTargetData.bind(this);
     }
+
+    //step 3
+    componentDidMount(){
+
+        //step 4
+     if (this.state.target_code==-1){
+         return
+     }else{
+           
+        TargetService.getSingleTarget(this.state.target_code).then((res)=>{
+            let Targets=res.data;
+            this.setState({target_code: Targets.target_code,
+                start_date:Targets.start_date,
+                end_date:Targets.end_date,
+                target_description:Targets.target_description,
+                active_flag:Targets.active_flag,
+                target_remarks:Targets.target_remarks,
+                parent_code:Targets.parent_code});
+        });
+     }
+
+    }
     SaveTargetData= (event)=>{
         event.preventDefault();
         let Targets={target_code: this.state.target_code,
@@ -32,10 +55,22 @@ class addTargetComponent extends Component {
                      target_remarks:this.state.target_remarks,
                      parent_code:this.state.parent_code};
         console.log(JSON.stringify(Targets));
-        TargetService.createTarget(Targets).then(res=>{
+
+        TargetService.updateTarget(Targets,this.state.target_code).then(res=>{
             this.props.history.push('/')
         });
+        
+       /* if (this.state.target_code==-1){
+            TargetService.createTarget(Targets).then(res=>{
+                this.props.history.push('/')
+            });
+        }else{
+            TargetService.updateTarget(Targets,this.state.target_code).then(res=>{
+                this.props.history.push('/')
+            });
+        }*/
 
+       
     }
     Cancel(){
         this.props.history.push('/')
@@ -61,14 +96,17 @@ class addTargetComponent extends Component {
     TargetNameHandler=(event)=>{
         this.setState({ target_description:  event.target.value})
     }
- 
+ getTitle() { 
+    if(this.state.target_code==-1)return <h4 className="text-center">Add Target</h4>
+        else return <h4 className="text-center">Upadte Target</h4>
+}
     render() {
         return (
             <div>
                <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-2 ">
-                            <h4 className="text-center">Add Target</h4>
+                            {this.getTitle() }
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
