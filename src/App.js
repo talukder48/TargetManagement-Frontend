@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter as Router,Route,Switch }from 'react-router-dom';
 import TargetList from './components/TargetList';
 import addTargetComponent from './components/addTargetComponent';
-import UpdateTargetComponent from './components/UpdateTargetComponent';
+//import UpdateTargetComponent from './components/UpdateTargetComponent';
 
 function App() {
   return (
