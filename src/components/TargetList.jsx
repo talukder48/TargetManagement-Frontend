@@ -44,13 +44,14 @@ class TargetList extends Component {
                         <thead>
                             <tr>
                                 <th>Target Code</th>
-                                <th>start date</th>
-                                <th>end date</th>
+                                <th>Start date</th>
+                                <th>End date</th>
                                 <th>Target Name</th>
                                 <th>Active</th>
                                 <th>Target Remarks</th>
                                 <th>Parent Target</th>
-                                <th>Action</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
 
                         </thead>
@@ -66,8 +67,8 @@ class TargetList extends Component {
                                     <td>{target.active_flag}</td>
                                     <td>{target.target_remarks}</td>
                                     <td>{target.parent_code}</td>
-                                    <td> <button className="btn btn-info" onClick={()=>this.editTarget(target.target_code)}>Update</button>
-                                    <button className="btn btn-danger" style={{marginLeft:"10px"}}  variant="danger" onClick={()=> {if (window.confirm('Are you sure you wish to delete this item?'))this.DeleteTarget(target.target_code)}}>Remove</button></td>
+                                    <td> <button className="btn btn-info" onClick={()=>this.editTarget(target.target_code)}>Update</button></td>
+                                    <td> <button className="btn btn-danger" style={{marginLeft:"10px"}}  variant="danger" onClick={()=> {if (window.confirm('Are you sure you wish to delete this item?'))this.DeleteTarget(target.target_code)}}>Remove</button></td>
                                     </tr>
                                 )
                             }

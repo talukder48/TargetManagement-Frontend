@@ -1,10 +1,10 @@
 
 import axios from 'axios';
-const TargetApiBaseUrl="http://192.168.100.221:8080/api/target/data";
-const SaveApiBaseUrl="http://192.168.100.221:8080/api/target/save";
-const SingleTargetUrl="http://192.168.100.221:8080/api/GetSingle";
-const UpdateTargetUrl="http://192.168.100.221:8080/api/Update";
-const DeleteTargetUrl="http://192.168.100.221:8080/api/Delete";
+const TargetApiBaseUrl="http://192.168.100.221:8081/api/target/data";
+const SaveApiBaseUrl="http://192.168.100.221:8081/api/target/save";
+const SingleTargetUrl="http://192.168.100.221:8081/api/GetSingle";
+const UpdateTargetUrl="http://192.168.100.221:8081/api/Update";
+const DeleteTargetUrl="http://192.168.100.221:8081/api/Delete";
 class TargetService{
   getTarget(){
       return axios.get(TargetApiBaseUrl);
