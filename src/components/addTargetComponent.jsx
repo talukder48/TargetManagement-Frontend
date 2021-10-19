@@ -57,7 +57,7 @@ class addTargetComponent extends Component {
         console.log(JSON.stringify(Targets));
 
         TargetService.updateTarget(Targets,this.state.target_code).then(res=>{
-            this.props.history.push('/')
+            this.props.history.push('/Target')
         });
         
        /* if (this.state.target_code==-1){
@@ -73,7 +73,7 @@ class addTargetComponent extends Component {
        
     }
     Cancel(){
-        this.props.history.push('/')
+        this.props.history.push('/Target')
     }
     TargetStartDateHandler=(event)=>{
         this.setState({start_date:event.target.value})
